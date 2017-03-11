@@ -19,7 +19,8 @@ $(document).ready(function() {
 
 	resize();
 
-	map = L.map('map').setView([45.0, -110.0], 3);
+	//map = L.map('map').setView([45.0, -110.0], 3);
+	map = L.map('map').setView([38.83, -77.46], 12);
 
 	legendControl = new L.Control.Legend();
 
@@ -32,19 +33,20 @@ $(document).ready(function() {
 	baseLayer.addTo(map);
 
 	// Define a fill color function for Romney (light red to red) and a fill color function for Obama (light blue to blue)
-	var fillColorFunctionRomney = new L.HSLLuminosityFunction(new L.Point(0, 0.95), new L.Point(55, 0.4), {outputHue: 0, outputSaturation: '100%'});
-	var fillColorFunctionObama = new L.HSLLuminosityFunction(new L.Point(0, 0.95), new L.Point(55, 0.4), {outputHue: 240, outputSaturation: '100%'});
+	var fillColorFunctionRomney = new L.HSLLuminosityFunction(new L.Point(0, 0.95), new L.Point(10, 0.4), {outputHue: 0, outputSaturation: '100%'});
+	var fillColorFunctionObama = new L.HSLLuminosityFunction(new L.Point(0, 0.95), new L.Point(10, 0.4), {outputHue: 240, outputSaturation: '100%'});
 
-	var opacityFunction = new L.PiecewiseFunction([new L.LinearFunction(new L.Point(0, 0), new L.Point(1, 0.7)), new L.LinearFunction(new L.Point(1, 0.7), new L.Point(1000, 0.7))]);
+	var opacityFunction = new L.PiecewiseFunction([new L.LinearFunction(new L.Point(0, 0), new L.Point(1, 0.7)), new L.LinearFunction(new L.Point(1, 0.7), new L.Point(10, 0.7))]);
 
 	var options = {
-		recordsField: null,
-		geoJSONField: 'geojson',
+		recordsField: 'features',
+		//geoJSONField: 'geojson',
 		locationMode: L.LocationModes.GEOJSON,
 		codeField: null,
-		locationTextField: 'geojson.properties.name',
+		//locationTextField: 'geojson.properties.name',
+		//locationTextField: 'properties.name',
 		displayOptions: {
-			'data': {
+			'properties.value': {
 				displayName: 'Data Value',
 				fillColor: fillColorFunctionObama,
 				fillOpacity: opacityFunction
@@ -70,8 +72,12 @@ $(document).ready(function() {
 	console.log("This is for real");
 
 	var electionLayer = new L.ChoroplethDataLayer(va10geoJSON,options);
-
 	map.addLayer(electionLayer);
 
+	//var myLayer = L.geoJSON(statesData).addTo(map);
+
+
+	// works with https://unpkg.com/leaflet@1.0.3/dist/leaflet.js in va10.html
+	//var myLayer = L.geoJSON(va10geoJSON).addTo(map);
 
 });
