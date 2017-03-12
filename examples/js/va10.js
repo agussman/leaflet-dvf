@@ -20,7 +20,7 @@ $(document).ready(function() {
 	resize();
 
 	//map = L.map('map').setView([45.0, -110.0], 3);
-	map = L.map('map').setView([38.83, -77.46], 12);
+	map = L.map('map').setView([39.13, -77.96], 10);
 
 	legendControl = new L.Control.Legend();
 
@@ -60,7 +60,7 @@ $(document).ready(function() {
 			fillOpacity: 0.5,
 			opacity: 1,
 			weight: 1,
-			stroke: false,
+			stroke: true,
 			color: '#0000FF'
 		},
 		tooltipOptions: {
