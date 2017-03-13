@@ -38,15 +38,18 @@ $(document).ready(function() {
 
 	var opacityFunction = new L.PiecewiseFunction([new L.LinearFunction(new L.Point(0, 0), new L.Point(1, 0.7)), new L.LinearFunction(new L.Point(1, 0.7), new L.Point(10, 0.7))]);
 
+	var stats = va10_stats.stats;
+
 	var options = {
-		recordsField: 'features',
-		//geoJSONField: 'geojson',
-		locationMode: L.LocationModes.GEOJSON,
+		recordsField: 'stats',
 		codeField: null,
+		locationMode: L.LocationModes.LOOKUP,
+		locationLookup: va10geoJSON,
+		locationIndexField: 'name',
 		//locationTextField: 'geojson.properties.name',
-		//locationTextField: 'properties.name',
+		locationTextField: 'name',
 		displayOptions: {
-			'properties.value': {
+			'Percent_D': {
 				displayName: 'Data Value',
 				fillColor: fillColorFunctionObama,
 				fillOpacity: opacityFunction
@@ -71,8 +74,10 @@ $(document).ready(function() {
 
 	console.log("This is for real");
 
-	var electionLayer = new L.ChoroplethDataLayer(va10geoJSON,options);
+	var electionLayer = new L.ChoroplethDataLayer(va10_stats, options);
 	map.addLayer(electionLayer);
+
+	console.log("Happened.")
 
 	//var myLayer = L.geoJSON(statesData).addTo(map);
 
