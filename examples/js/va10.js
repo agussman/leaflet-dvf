@@ -36,7 +36,16 @@ $(document).ready(function() {
 	var fillColorFunctionRomney = new L.HSLLuminosityFunction(new L.Point(0, 0.95), new L.Point(10, 0.4), {outputHue: 0, outputSaturation: '100%'});
 	var fillColorFunctionObama = new L.HSLLuminosityFunction(new L.Point(0, 0.95), new L.Point(10, 0.4), {outputHue: 240, outputSaturation: '100%'});
 
-	var opacityFunction = new L.PiecewiseFunction([new L.LinearFunction(new L.Point(0, 0), new L.Point(1, 0.7)), new L.LinearFunction(new L.Point(1, 0.7), new L.Point(10, 0.7))]);
+	var fillColorFunctionBluetoRedHSL = new L.HSLHueFunction(new L.Point(0, 240), new L.Point(1, 0));
+	var fillColorFunctionBluetoRedBlend = new L.RGBColorBlendFunction(0, 100, [255, 0, 0], [0, 0, 255]);
+	var fullColorFunctionBWR = new L.PiecewiseFunction([
+		//new L.HSLLuminosityFunction(new L.Point(0, 1), new L.Point(50, 0.5), {outputHue: 60}),
+		//new L.HSLHueFunction(new L.Point(50, 60), new L.Point(100, 0))
+		new L.RGBColorBlendFunction(15, 50, [255, 0, 0], [255, 255, 255]),
+		new L.RGBColorBlendFunction(50, 85, [255, 255, 255], [0, 0, 255])
+	]);
+
+	var opacityFunction = new L.PiecewiseFunction([new L.LinearFunction(new L.Point(0, 0), new L.Point(1, 0.7)), new L.LinearFunction(new L.Point(1, 0.7), new L.Point(1, 0.7))]);
 
 	var stats = va10_stats.stats;
 
@@ -51,8 +60,8 @@ $(document).ready(function() {
 		displayOptions: {
 			'Percent_D': {
 				displayName: 'Data Value',
-				fillColor: fillColorFunctionObama,
-				fillOpacity: opacityFunction
+				fillColor: fullColorFunctionBWR,
+				//fillOpacity: opacityFunction
 			}
 		},
 		includeLayer: function (record) {
@@ -64,7 +73,7 @@ $(document).ready(function() {
 			opacity: 1,
 			weight: 1,
 			stroke: true,
-			color: '#0000FF'
+			color: '#000000'
 		},
 		tooltipOptions: {
 			iconSize: new L.Point(80,60),
