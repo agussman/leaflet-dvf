@@ -59,7 +59,7 @@ $(document).ready(function() {
 		locationTextField: 'name',
 		displayOptions: {
 			'Percent_D': {
-				displayName: 'Data Value',
+				displayName: '% Bennett',
 				fillColor: fullColorFunctionBWR,
 				//fillOpacity: opacityFunction
 			}
